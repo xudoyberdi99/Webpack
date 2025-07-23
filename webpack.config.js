@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack')
 module.exports = env => {
 	return {
 		mode: env.mode || 'development',
-		entry: path.resolve(__dirname, 'src', 'app.js'),
+		entry: path.resolve(__dirname, 'src', 'app.ts'),
 		output: {
 			path: path.resolve(__dirname, 'build'),
 			filename: '[name].[contenthash].bundle.js',
@@ -18,5 +18,17 @@ module.exports = env => {
 			}),
 			new Dotenv(),
 		],
+		module: {
+			rules: [
+				{
+					test: /\.tsx?$/,
+					use: 'ts-loader',
+					exclude: /node_modules/,
+				},
+			],
+		},
+		resolve: {
+			extensions: ['.tsx', '.ts', '.js'],
+		},
 	}
 }
