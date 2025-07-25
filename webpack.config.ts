@@ -1,10 +1,14 @@
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import Dotenv from 'dotenv-webpack'
-import webpack from 'webpack'
+import webpack, { Configuration } from 'webpack'
 
-module.exports = env => {
-	return {
+interface Env {
+	mode?: 'development' | 'production'
+}
+
+export default (env: Env) => {
+	const config: Configuration = {
 		mode: env.mode || 'development',
 		entry: path.resolve(__dirname, 'src', 'app.ts'),
 		output: {
@@ -32,4 +36,5 @@ module.exports = env => {
 			extensions: ['.tsx', '.ts', '.js'],
 		},
 	}
+	return config
 }
