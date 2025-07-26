@@ -1,7 +1,7 @@
-import path from 'path'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
 import Dotenv from 'dotenv-webpack'
-import webpack, { Configuration } from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import path from 'path'
+import { Configuration } from 'webpack'
 import type { Configuration as DevServerConfiguration } from 'webpack-dev-server'
 
 interface Env {
@@ -42,7 +42,8 @@ export default (env: Env) => {
 		resolve: {
 			extensions: ['.tsx', '.ts', '.js'],
 		},
-		devServer: devServer,
+		devtool: env.mode === 'development' ? 'inline-source-map' : false,
+		devServer: env.mode === 'development' ? devServer : undefined,
 	}
 	return config
 }
