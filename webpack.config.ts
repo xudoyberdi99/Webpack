@@ -17,7 +17,7 @@ export default (env: Env) => {
 	}
 	const config: Configuration = {
 		mode: env.mode || 'development',
-		entry: path.resolve(__dirname, 'src', 'app.ts'),
+		entry: path.resolve(__dirname, 'src', 'main.tsx'),
 		output: {
 			path: path.resolve(__dirname, 'build'),
 			filename: '[name].[contenthash].bundle.js',
